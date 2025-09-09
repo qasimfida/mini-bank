@@ -10,9 +10,11 @@ export default function HomePage() {
 
   useEffect(() => {
     // Check if user is logged in, redirect to dashboard if true
-    const token = localStorage.getItem('token');
-    if (token) {
-      router.push('/dashboard');
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token');
+      if (token) {
+        router.push('/dashboard');
+      }
     }
   }, [router]);
 

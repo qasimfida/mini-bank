@@ -25,7 +25,7 @@ export function useAuth() {
   const { data: user, isLoading: isUserLoading } = useQuery({
     queryKey: ['user'],
     queryFn: authAPI.getProfile,
-    enabled: !!localStorage.getItem('token'),
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('token'),
     retry: false,
   });
 
@@ -36,7 +36,7 @@ export function useAuth() {
     window.location.href = '/login';
   };
 
-  const isAuthenticated = !!localStorage.getItem('token') && !!user;
+  const isAuthenticated = typeof window !== 'undefined' && !!localStorage.getItem('token') && !!user;
 
   return {
     user,
