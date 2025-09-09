@@ -1,0 +1,15 @@
+{
+  "name": "@mini-bank/config",
+  "version": "1.0.0",
+  "description": "Environment configurations and constants",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "echo 'No dev step required'",
+    "lint": "eslint ."
+  },
+  "keywords": ["config", "environment", "constants"],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@mini-bank/widgets",
+  "version": "1.0.0",
+  "description": "Banking widgets for loans, shares, scores, and transactions",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "echo 'No dev step required'",
+    "lint": "eslint ."
+  },
+  "keywords": ["widgets", "banking", "react"],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}

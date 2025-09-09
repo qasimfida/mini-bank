@@ -1,0 +1,19 @@
+{
+  "name": "@mini-bank/ui",
+  "version": "1.0.0",
+  "description": "Shared UI components for Mini Bank",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "echo 'No dev step required'",
+    "lint": "eslint ."
+  },
+  "keywords": ["ui", "components", "react"],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}

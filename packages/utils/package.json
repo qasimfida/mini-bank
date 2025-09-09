@@ -1,0 +1,15 @@
+{
+  "name": "@mini-bank/utils",
+  "version": "1.0.0",
+  "description": "Utility functions and formatters for banking operations",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "echo 'No dev step required'",
+    "lint": "eslint ."
+  },
+  "keywords": ["utils", "formatters", "banking"],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@mini-bank/hooks",
+  "version": "1.0.0",
+  "description": "Shared custom hooks for React Query, Jotai state management",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "echo 'No dev step required'",
+    "lint": "eslint ."
+  },
+  "keywords": ["hooks", "react", "state-management"],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "jotai": "^2.0.0"
+  }
+}

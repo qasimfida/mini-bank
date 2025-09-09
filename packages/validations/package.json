@@ -1,0 +1,18 @@
+{
+  "name": "@mini-bank/validations",
+  "version": "1.0.0",
+  "description": "Yup validation schemas for forms and data validation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "echo 'No dev step required'",
+    "lint": "eslint ."
+  },
+  "keywords": ["validation", "yup", "forms"],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "yup": "^1.0.0"
+  }
+}

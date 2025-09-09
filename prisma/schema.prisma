@@ -1,0 +1,160 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  phone     String?
+  role      UserRole @default(CUSTOMER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  account   Account?
+  loans     Loan[]
+  shares    Share[]
+  scores    BorrowerScore[]
+  
+  @@map("users")
+}
+
+model Account {
+  id      String @id @default(cuid())
+  userId  String @unique
+  balance Float  @default(0)
+  
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  
+  @@map("accounts")
+}
+
+model Transaction {
+  id          String          @id @default(cuid())
+  accountId   String
+  type        TransactionType
+  amount      Float
+  description String?
+  category    String?
+  createdAt   DateTime        @default(now())
+  createdBy   String // Admin user ID who created this transaction
+  
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  
+  @@map("transactions")
+}
+
+model Loan {
+  id                String     @id @default(cuid())
+  borrowerId        String
+  amount            Float
+  interestRate      Float
+  interestType      InterestType @default(FIXED)
+  termInMonths      Int
+  monthlyPayment    Float
+  totalInterest     Float
+  totalAmount       Float
+  startDate         DateTime
+  endDate           DateTime
+  status            LoanStatus @default(ACTIVE)
+  penalties         Float      @default(0)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  
+  borrower     User              @relation(fields: [borrowerId], references: [id], onDelete: Cascade)
+  installments LoanInstallment[]
+  
+  @@map("loans")
+}
+
+model LoanInstallment {
+  id              String    @id @default(cuid())
+  loanId          String
+  installmentNumber Int
+  dueDate         DateTime
+  amount          Float
+  principalAmount Float
+  interestAmount  Float
+  paidAmount      Float     @default(0)
+  paidDate        DateTime?
+  penalty         Float     @default(0)
+  status          InstallmentStatus @default(PENDING)
+  
+  loan Loan @relation(fields: [loanId], references: [id], onDelete: Cascade)
+  
+  @@map("loan_installments")
+}
+
+model Share {
+  id         String    @id @default(cuid())
+  customerId String
+  amount     Float
+  month      String // Format: "YYYY-MM"
+  year       Int
+  purchaseDate DateTime @default(now())
+  
+  customer User @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  @@unique([customerId, month, year])
+  @@map("shares")
+}
+
+model BorrowerScore {
+  id         String   @id @default(cuid())
+  customerId String
+  score      Int      @default(0)
+  reason     String?
+  adjustment Int      @default(0) // Manual adjustment by admin
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  customer User @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  @@map("borrower_scores")
+}
+
+// Enums
+enum UserRole {
+  ADMIN
+  CUSTOMER
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAWAL
+  EXPENSE
+  LOAN_PAYMENT
+  SHARE_PURCHASE
+}
+
+enum InterestType {
+  FIXED
+  REDUCING_BALANCE
+}
+
+enum LoanStatus {
+  ACTIVE
+  COMPLETED
+  DEFAULTED
+  CANCELLED
+}
+
+enum InstallmentStatus {
+  PENDING
+  PAID
+  OVERDUE
+  PARTIALLY_PAID
+}
