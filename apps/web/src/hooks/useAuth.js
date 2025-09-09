@@ -33,7 +33,7 @@ export function useAuth() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     queryClient.clear();
-    window.location.href = '/auth/login';
+    window.location.href = '/login';
   };
 
   const isAuthenticated = !!localStorage.getItem('token') && !!user;

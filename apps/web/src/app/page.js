@@ -34,13 +34,13 @@ export default function HomePage() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Button 
-                onClick={() => router.push('/auth/login')}
+                onClick={() => router.push('/login')}
                 className="w-full"
               >
                 Login
               </Button>
               <Button 
-                onClick={() => router.push('/auth/register')}
+                onClick={() => router.push('/register')}
                 variant="outline"
                 className="w-full"
               >

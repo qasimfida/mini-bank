@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }) {
 
   useEffect(() => {
     if (!isUserLoading && !isAuthenticated) {
-      router.push('/auth/login');
+      router.push('/login');
     }
   }, [isAuthenticated, isUserLoading, router]);
 
