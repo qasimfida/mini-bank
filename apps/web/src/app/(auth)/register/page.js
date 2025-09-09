@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@/hooks/useAuth';
+import ClientOnly from '@/components/ClientOnly';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -57,7 +58,28 @@ export default function RegisterPage() {
   };
 
   return (
-    <Card>
+    <ClientOnly fallback={
+      <Card>
+        <CardHeader>
+          <CardTitle>Register</CardTitle>
+          <CardDescription>
+            Loading registration form...
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+              <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+            <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+            <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+            <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+          </div>
+        </CardContent>
+      </Card>
+    }>
+      <Card>
       <CardHeader>
         <CardTitle>Register</CardTitle>
         <CardDescription>
@@ -172,5 +194,6 @@ export default function RegisterPage() {
         </div>
       </CardContent>
     </Card>
+    </ClientOnly>
   );
 }
