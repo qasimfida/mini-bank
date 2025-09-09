@@ -6,10 +6,6 @@ const nextConfig = {
   // Optimize for deployment
   poweredByHeader: false,
   compress: true,
-  // Fix for Windows permission issues
-  experimental: {
-    turbo: false,
-  },
 };
 
 export default nextConfig;
